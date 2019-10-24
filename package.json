@@ -18,7 +18,12 @@
     "type": "git",
     "url": "git+https://github.com/progfay/html-tsx.git"
   },
-  "keywords": [],
+  "keywords": [
+    "tsx",
+    "html",
+    "rendertostring",
+    "typescript"
+  ],
   "author": "progfay",
   "license": "ISC",
   "bugs": {
