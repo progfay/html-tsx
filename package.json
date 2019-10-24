@@ -1,5 +1,5 @@
 {
-  "name": "typescript-template",
+  "name": "html-tsx",
   "version": "1.0.0",
   "description": "",
   "files": [
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/progfay/typescript-template.git"
+    "url": "git+https://github.com/progfay/html-tsx.git"
   },
   "keywords": [],
   "author": "progfay",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/progfay/typescript-template/issues"
+    "url": "https://github.com/progfay/html-tsx/issues"
   },
-  "homepage": "https://github.com/progfay/typescript-template#readme",
+  "homepage": "https://github.com/progfay/html-tsx#readme",
   "devDependencies": {
     "@types/core-js": "^2.5.2",
     "@types/node": "^12.0.10",
