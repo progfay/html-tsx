@@ -1,5 +1,33 @@
-const hello = (name: string = 'world') => {
-  console.log(`Hello, ${name}!`)
+declare global {
+  namespace JSX {
+    type PropertyType = boolean | number | string
+
+    type AttributesType = {
+      [key: string]: PropertyType
+    }
+
+    type IntrinsicElements = {
+      [tagName in keyof ElementTagNameMap]: AttributesType | {}
+    }
+  }
 }
 
-hello('TypeScript')
+const renderAttributes = (attr: JSX.AttributesType): string => (
+  Object
+    .entries(attr)
+    .map(([key, value]) => `${key}="${value.toString().replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"`)
+    .join(' ')
+)
+
+const renderInnerHTMLs = (innerHTMLs: (number | string | boolean)[]): string => (
+  innerHTMLs.map(
+    (innerHTML = '') => (
+      Array.isArray(innerHTML)
+        ? innerHTML.map(html => html.toString()).join('')
+        : innerHTML.toString()
+    )
+  ).join('')
+)
+
+export const pragma = (tagName: string, attributes: JSX.AttributesType, ...innerHTMLs: (number | string | boolean)[]): string =>
+  `<${tagName}${attributes ? ` ${renderAttributes(attributes)}` : ''}>${renderInnerHTMLs(innerHTMLs)}</${tagName}>`
