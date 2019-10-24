@@ -1,0 +1,40 @@
+{
+  "name": "typescript-template",
+  "version": "1.0.0",
+  "description": "",
+  "files": [
+    "lib"
+  ],
+  "main": "./src/index.js",
+  "scripts": {
+    "prebuild": "rm -rf lib",
+    "build": "tsc -p ./tsconfig.json",
+    "start": "node ./lib/index.js",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint --fix . --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/progfay/typescript-template.git"
+  },
+  "keywords": [],
+  "author": "progfay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/progfay/typescript-template/issues"
+  },
+  "homepage": "https://github.com/progfay/typescript-template#readme",
+  "devDependencies": {
+    "@types/core-js": "^2.5.2",
+    "@types/node": "^12.0.10",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "typescript": "^3.5.2"
+  }
+}
