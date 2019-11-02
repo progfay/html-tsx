@@ -10,6 +10,7 @@
   "scripts": {
     "prebuild": "rm -rf lib",
     "build": "tsc -p ./tsconfig.json",
+    "prepare": "npm run build",
     "start": "node ./lib/index.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint --fix . --ext .ts"
@@ -25,7 +26,7 @@
     "typescript"
   ],
   "author": "progfay",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/progfay/html-tsx/issues"
   },
