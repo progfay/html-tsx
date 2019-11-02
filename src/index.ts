@@ -7,7 +7,7 @@ declare global {
     }
 
     type IntrinsicElements = {
-      [key: string]: AttributesType | {}
+      [tag in keyof ElementTagNameMap]: AttributesType | {}
     }
   }
 }
