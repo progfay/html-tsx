@@ -9,7 +9,6 @@ Transform tsx to HTML string
 ```json
 {
   "compilerOptions": {
-    "lib": ["dom"],
     "jsx": "react",
     "jsxFactory": "pragma"
   }

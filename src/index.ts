@@ -6,10 +6,8 @@ declare global {
       [key: string]: PropertyType
     }
 
-    type TagType = keyof ElementTagNameMap | string
-
     type IntrinsicElements = {
-      [tag in TagType]: AttributesType | {}
+      [key: string]: AttributesType | {}
     }
   }
 }
