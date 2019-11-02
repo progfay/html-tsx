@@ -15,7 +15,7 @@ declare global {
 const renderAttributes = (attr: JSX.AttributesType): string => (
   Object
     .entries(attr)
-    .map(([key, value]) => `${key}="${value.toString().replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"`)
+    .map(([key, value]) => typeof value === 'boolean' ? key : `${key}="${value.toString().replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"`)
     .join(' ')
 )
 
