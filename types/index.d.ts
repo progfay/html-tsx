@@ -8,7 +8,7 @@ declare namespace pragma.JSX {
     | 'hr'
     | 'img'
     | 'input'
-    | 'keygen'
+    // | 'keygen'
     | 'link'
     | 'meta'
     | 'param'

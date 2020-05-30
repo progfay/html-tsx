@@ -1,5 +1,5 @@
 // Reference: https://developer.mozilla.org/en-US/docs/Glossary/Empty_element
-const EMPTY_ELEMENT_LIST = [
+const EMPTY_ELEMENT_LIST: pragma.JSX.EmptyElementTagName[] = [
   'area',
   'base',
   'br',
@@ -8,14 +8,14 @@ const EMPTY_ELEMENT_LIST = [
   'hr',
   'img',
   'input',
-  'keygen',
+  // 'keygen',
   'link',
   'meta',
   'param',
   'source',
   'track',
   'wbr'
-] as const
+]
 
 function renderAttributes<T extends keyof pragma.JSX.IntrinsicElements> (attr: pragma.JSX.Properties<T>): string {
   return Object
