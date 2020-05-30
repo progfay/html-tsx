@@ -1,41 +1,39 @@
-declare global {
-  namespace JSX {
-    type EmptyElementTagName = (keyof HTMLElementTagNameMap) & (
-      | 'area'
-      | 'base'
-      | 'br'
-      | 'col'
-      | 'embed'
-      | 'hr'
-      | 'img'
-      | 'input'
-      | 'keygen'
-      | 'link'
-      | 'meta'
-      | 'param'
-      | 'source'
-      | 'track'
-      | 'wbr'
-    )
+declare namespace pragma.JSX {
+  type EmptyElementTagName = (keyof HTMLElementTagNameMap) & (
+    | 'area'
+    | 'base'
+    | 'br'
+    | 'col'
+    | 'embed'
+    | 'hr'
+    | 'img'
+    | 'input'
+    | 'keygen'
+    | 'link'
+    | 'meta'
+    | 'param'
+    | 'source'
+    | 'track'
+    | 'wbr'
+  )
 
-    interface ElementChildrenAttribute {
-      children: string | string[]
-    }
+  interface ElementChildrenAttribute {
+    children: string | string[]
+  }
 
-    type Properties<T extends keyof HTMLElementTagNameMap> =
-    {
-      [K in keyof Omit<HTMLElementTagNameMap[T], keyof JSX.ElementChildrenAttribute>]?:
-        HTMLElementTagNameMap[T][K] extends (string | boolean | number)
-          ? HTMLElementTagNameMap[T][K]
-          : never
-    } & {
-      [K in keyof JSX.ElementChildrenAttribute]?:
-        T extends JSX.EmptyElementTagName ? never : JSX.ElementChildrenAttribute[K]
-    }
+  type Properties<T extends keyof HTMLElementTagNameMap> =
+  {
+    [K in keyof Omit<HTMLElementTagNameMap[T], keyof pragma.JSX.ElementChildrenAttribute>]?:
+      HTMLElementTagNameMap[T][K] extends (string | boolean | number)
+        ? HTMLElementTagNameMap[T][K]
+        : never
+  } & {
+    [K in keyof pragma.JSX.ElementChildrenAttribute]?:
+      T extends pragma.JSX.EmptyElementTagName ? never : pragma.JSX.ElementChildrenAttribute[K]
+  }
 
-    type IntrinsicElements = {
-      [T in keyof HTMLElementTagNameMap]?: Properties<T>
-    }
+  type IntrinsicElements = {
+    [T in keyof HTMLElementTagNameMap]?: Properties<T>
   }
 }
 
@@ -58,7 +56,7 @@ const EMPTY_ELEMENT_LIST = [
   'wbr'
 ] as const
 
-function renderAttributes<T extends keyof JSX.IntrinsicElements> (attr: JSX.Properties<T>): string {
+function renderAttributes<T extends keyof pragma.JSX.IntrinsicElements> (attr: pragma.JSX.Properties<T>): string {
   return Object
     .entries(attr)
     .map(([key, value]) => (
@@ -69,10 +67,10 @@ function renderAttributes<T extends keyof JSX.IntrinsicElements> (attr: JSX.Prop
     .join(' ')
 }
 
-export function pragma<T extends keyof JSX.IntrinsicElements> (
+export function pragma<T extends keyof pragma.JSX.IntrinsicElements> (
   tagName: T,
-  properties?: JSX.Properties<T>,
-  ...children: JSX.ElementChildrenAttribute['children'][]
+  properties?: pragma.JSX.Properties<T>,
+  ...children: pragma.JSX.ElementChildrenAttribute['children'][]
 ): string {
   return (
     tagName in EMPTY_ELEMENT_LIST
