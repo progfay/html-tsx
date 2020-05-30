@@ -18,18 +18,17 @@ declare namespace pragma.JSX {
   )
 
   interface ElementChildrenAttribute {
-    children: string | string[]
+    children: {}
   }
 
   type Properties<T extends keyof HTMLElementTagNameMap> =
   {
-    [K in keyof Omit<HTMLElementTagNameMap[T], keyof pragma.JSX.ElementChildrenAttribute>]?:
+    [K in keyof Omit<HTMLElementTagNameMap[T], 'children'>]?:
       HTMLElementTagNameMap[T][K] extends (string | boolean | number)
         ? HTMLElementTagNameMap[T][K]
         : never
   } & {
-    [K in keyof pragma.JSX.ElementChildrenAttribute]?:
-      T extends pragma.JSX.EmptyElementTagName ? never : pragma.JSX.ElementChildrenAttribute[K]
+    children: T extends pragma.JSX.EmptyElementTagName ? never : (string | string[])
   }
 
   type IntrinsicElements = {
