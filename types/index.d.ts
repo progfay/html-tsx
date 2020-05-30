@@ -21,17 +21,17 @@ declare namespace pragma.JSX {
     children: {}
   }
 
-  type Properties<T extends keyof HTMLElementTagNameMap> =
-  {
-    [K in keyof Omit<HTMLElementTagNameMap[T], 'children'>]?:
+  type Properties<T extends keyof HTMLElementTagNameMap> = {
+    readonly [K in keyof Omit<HTMLElementTagNameMap[T], 'children'>]?:
       HTMLElementTagNameMap[T][K] extends (string | boolean | number)
         ? HTMLElementTagNameMap[T][K]
         : never
-  } & {
-    children: T extends pragma.JSX.EmptyElementTagName ? never : (string | string[])
+  } | {
+    readonly toString: () => string
+    readonly children?: T extends pragma.JSX.EmptyElementTagName ? never : (string | string[])
   }
 
   type IntrinsicElements = {
-    [T in keyof HTMLElementTagNameMap]?: Properties<T>
+    [T in keyof HTMLElementTagNameMap]: Properties<T>
   }
 }
