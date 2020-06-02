@@ -1,4 +1,5 @@
-declare namespace pragma.JSX {
+declare global {
+  namespace JSX {
   type EmptyElementTagName = (keyof HTMLElementTagNameMap) & (
     | 'area'
     | 'base'
@@ -131,16 +132,17 @@ declare namespace pragma.JSX {
         : never
   } | {
     readonly toString: () => string
-    readonly children?: T extends pragma.JSX.EmptyElementTagName ? never : (string | string[])
+    readonly children?: T extends JSX.EmptyElementTagName ? never : (string | string[])
   } | HTMLAttributes
 
   type IntrinsicElements = {
     [T in keyof HTMLElementTagNameMap]: Properties<T>
   }
 }
+}
 
 // Reference: https://developer.mozilla.org/en-US/docs/Glossary/Empty_element
-const EMPTY_ELEMENT_LIST: pragma.JSX.EmptyElementTagName[] = [
+const EMPTY_ELEMENT_LIST: JSX.EmptyElementTagName[] = [
   'area',
   'base',
   'br',
@@ -158,7 +160,7 @@ const EMPTY_ELEMENT_LIST: pragma.JSX.EmptyElementTagName[] = [
   'wbr'
 ]
 
-function renderAttributes<T extends keyof pragma.JSX.IntrinsicElements> (attr: pragma.JSX.Properties<T>): string {
+function renderAttributes<T extends keyof JSX.IntrinsicElements> (attr: JSX.Properties<T>): string {
   return Object
     .entries(attr)
     .map(([key, value]) => (
@@ -169,10 +171,10 @@ function renderAttributes<T extends keyof pragma.JSX.IntrinsicElements> (attr: p
     .join(' ')
 }
 
-export function pragma<T extends keyof pragma.JSX.IntrinsicElements> (
+export function pragma<T extends keyof JSX.IntrinsicElements> (
   tagName: T,
-  properties?: pragma.JSX.Properties<T>,
-  ...children: pragma.JSX.ElementChildrenAttribute['children'][]
+  properties?: JSX.Properties<T>,
+  ...children: JSX.ElementChildrenAttribute['children'][]
 ): string {
   return (
     tagName in EMPTY_ELEMENT_LIST
