@@ -1,6 +1,6 @@
 {
   "name": "html-tsx",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Transform tsx to HTML string",
   "files": [
     "lib"
