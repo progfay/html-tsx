@@ -166,7 +166,7 @@ function renderAttributes<T extends keyof JSX.IntrinsicElements> (attr: JSX.Prop
     .map(([key, value]) => (
       typeof value === 'boolean'
         ? key
-        : `${key}="${value?.toString().replace(/&/g, '&amp;').replace(/"/g, '&quot;') ?? ''}"`
+        : `${key}="${(value as number | string)?.toString().replace(/&/g, '&amp;').replace(/"/g, '&quot;') ?? ''}"`
     ))
     .join(' ')
 }
